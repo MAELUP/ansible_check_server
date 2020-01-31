@@ -1,0 +1,22 @@
+---
+- hosts: test
+  tasks:
+   - name: check alive
+     ping:
+      data: ok
+     register: check_alive
+   - debug:
+      msg: Server is '{{check_alive.ping}}'
+
+   - name: check free memory
+     debug:
+      msg: Memery Free '{{ ( ansible_memfree_mb / ansible_memtotal_mb ) * 100 }}' %
+
+   - name: check free disk
+     debug:
+      msg: disk '{{item.mount}}' free space '{{ ( ( item.size_total - item.size_available ) / item.size_total ) * 100 }}' %
+     loop: '{{ansible_mounts}}'
+
+
+
+...
