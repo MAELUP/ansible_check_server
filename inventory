@@ -1,0 +1,2 @@
+[test]
+10.4.150.201 ansible_user=root ansible_password=P@ssw0rd
